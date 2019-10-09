@@ -22,21 +22,39 @@ return(
         {
             elements.map(element =>{
                 return(
+                    
                     <tr key={element.name}>
                     <td>{element.name}</td>
                     <td>{element.appearance}</td>
-                    <td><img src = {element.spectral_img} alt = ""></img></td>
+                    <td><img alt="" src={element.spectral_img}></img></td>
+                    
                     </tr>
-                )
+                );
+
             })
+            
         }
         </tbody>
 </table>
+
 </>
+
 
 );
 
-
+function getImageBase64(src){
+    var canvas = document.createElement("canvas");
+    var img = document.createElement("img");
+    img.src = src;
+    //canvas.width = img.width;
+    //canvas.height = img.height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL("image/jpg");
+      dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+     return img.src = dataURL; 
+                
+}
 }
 
 export default Element;
